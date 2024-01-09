@@ -86,3 +86,67 @@ export type InvoiceForm = {
   amount: number;
   status: 'pending' | 'paid';
 };
+
+export enum ArticleType {
+  Phone = 'Téléphone',
+  Laptop = 'Ordinateur portable',
+  Tablet = 'Tablette',
+  Headphone = 'Casque',
+  Console = 'Console de jeu',
+}
+
+export enum PhoneBrand {
+  Apple = 'Apple',
+  Samsung = 'Samsung',
+  Huawei = 'Huawei',
+  Xiaomi = 'Xiaomi',
+  OnePlus = 'OnePlus',
+  Oppo = 'Oppo',
+  Honor = 'Honor',
+}
+
+export enum LaptopBrand {
+  Apple = 'Apple',
+  Dell = 'Dell',
+  HP = 'HP',
+  Lenovo = 'Lenovo',
+  Acer = 'Acer',
+  Asus = 'Asus',
+  MSI = 'MSI',
+  Samsung = 'Samsung',
+  Sony = 'Sony',
+  Toshiba = 'Toshiba',
+}
+
+export enum IPhoneModel {
+  iPhoneSE = 'iPhone SE',
+  iPhone6 = 'iPhone 6',
+  iPhone6S = 'iPhone 6S',
+  iPhone7 = 'iPhone 7',
+  iPhone8 = 'iPhone 8',
+  iPhoneX = 'iPhone X',
+  iPhoneXR = 'iPhone XR',
+  iPhoneXS = 'iPhone XS',
+  iPhone11 = 'iPhone 11',
+  iPhone11Pro = 'iPhone 11 Pro',
+  iPhone11ProMax = 'iPhone 11 Pro Max',
+  iPhoneSE2 = 'iPhone SE (2nd generation)',
+  iPhone12Mini = 'iPhone 12 Mini',
+  iPhone12 = 'iPhone 12',
+  iPhone12Pro = 'iPhone 12 Pro',
+  iPhone12ProMax = 'iPhone 12 Pro Max',
+  iPhone13Mini = 'iPhone 13 Mini',
+  iPhone13 = 'iPhone 13',
+  iPhone13Pro = 'iPhone 13 Pro',
+  iPhone13ProMax = 'iPhone 13 Pro Max',
+  iPhone14 = 'iPhone 14',
+  iPhone14Pro = 'iPhone 14 Pro',
+  iPhone14ProMax = 'iPhone 14 Pro Max',
+}
+
+// export enum IphoneStorageCapacity {
+//   64 = '64 Go',
+//   128 = '128 Go',
+//   '256' = '256 Go',
+//   '512' = '512 Go',
+// }
