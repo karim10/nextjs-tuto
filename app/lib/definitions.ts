@@ -26,6 +26,17 @@ export type Invoice = {
   status: 'pending' | 'paid';
 };
 
+export type Provider = {
+  id: string,
+  name: string,
+  contactname: string,
+  address: string,
+  email: string,
+  phonenumber: string,
+  password: string,
+  role: string
+}
+
 export type Revenue = {
   month: string;
   revenue: number;

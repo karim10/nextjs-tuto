@@ -7,6 +7,49 @@ const {
 } = require("../app/lib/placeholder-data.js");
 const bcrypt = require("bcrypt");
 
+async function seedProviders(client) {
+  try {
+    await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+    // Create the "invoices" table if it doesn't exist
+    const createTable = await client.sql`
+      CREATE TABLE IF NOT EXISTS providers (
+        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        contactName VARCHAR(255) NOT NULL,
+        address VARCHAR(255) NOT NULL,
+        phoneNumber VARCHAR(255) NOT NULL,
+        email TEXT NOT NULL UNIQUE,
+        password TEXT NOT NULL,
+        role VARCHAR(255) NOT NULL
+      );
+    `;
+
+    console.log(`Created "providers" table`);
+
+    // // Insert data into the "users" table
+    // const insertedUsers = await Promise.all(
+    //   users.map(async (user) => {
+    //     const hashedPassword = await bcrypt.hash(user.password, 10);
+    //     return client.sql`
+    //     INSERT INTO users (id, name, email, password)
+    //     VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
+    //     ON CONFLICT (id) DO NOTHING;
+    //   `;
+    //   })
+    // );
+
+    // console.log(`Seeded ${insertedUsers.length} users`);
+
+    return {
+      createTable,
+      // users: insertedUsers,
+    };
+  } catch (error) {
+    console.error("Error seeding users:", error);
+    throw error;
+  }
+}
+
 async function seedUsers(client) {
   try {
     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
@@ -163,10 +206,12 @@ async function seedRevenue(client) {
 async function main() {
   const client = await db.connect();
 
-  await seedUsers(client);
-  await seedCustomers(client);
-  await seedInvoices(client);
-  await seedRevenue(client);
+  // await seedUsers(client);
+  // await seedCustomers(client);
+  // await seedInvoices(client);
+  // await seedRevenue(client);
+
+  await seedProviders(client)
 
   await client.end();
 }

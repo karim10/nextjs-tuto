@@ -7,6 +7,7 @@ import {
   LatestInvoiceRaw,
   User,
   Revenue,
+  Provider,
 } from "./definitions";
 import { formatCurrency } from "./utils";
 import { unstable_noStore as noStore } from "next/cache";
@@ -30,6 +31,18 @@ export async function fetchRevenue() {
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch revenue data.");
+  }
+}
+
+export async function fetchProviders() {
+  noStore();
+  try {
+    const data = await sql<Provider>`SELECT * FROM providers`;
+    console.log(data.rows)
+    return data.rows;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch providers data.");
   }
 }
 
