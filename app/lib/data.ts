@@ -5,7 +5,6 @@ import {
   InvoiceForm,
   InvoicesTable,
   LatestInvoiceRaw,
-  User,
   Revenue,
   Provider,
 } from "./definitions";
@@ -38,7 +37,7 @@ export async function fetchProviders() {
   noStore();
   try {
     const data = await sql<Provider>`SELECT * FROM providers`;
-    console.log(data.rows)
+    console.log(data.rows);
     return data.rows;
   } catch (error) {
     console.error("Database Error:", error);
@@ -240,13 +239,13 @@ export async function fetchFilteredCustomers(query: string) {
   }
 }
 
-export async function getUser(email: string) {
-  noStore();
-  try {
-    const user = await sql`SELECT * from USERS where email=${email}`;
-    return user.rows[0] as User;
-  } catch (error) {
-    console.error("Failed to fetch user:", error);
-    throw new Error("Failed to fetch user.");
-  }
-}
+// export async function getUser(email: string) {
+//   noStore();
+//   try {
+//     const user = await sql`SELECT * from USERS where email=${email}`;
+//     return user.rows[0] as User;
+//   } catch (error) {
+//     console.error("Failed to fetch user:", error);
+//     throw new Error("Failed to fetch user.");
+//   }
+// }

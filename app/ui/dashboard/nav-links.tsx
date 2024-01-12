@@ -4,7 +4,7 @@ import {
   UserGroupIcon,
   HomeIcon,
   DocumentDuplicateIcon,
-  UsersIcon
+  UsersIcon,
 } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import Link from "next/link";
@@ -12,14 +12,18 @@ import { usePathname } from "next/navigation";
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
-const links = [
+const providerLinks = [
   { name: "Home", href: "/dashboard", icon: HomeIcon },
   {
     name: "Articles",
     href: "/dashboard/articles",
     icon: DocumentDuplicateIcon,
   },
-  { name: "Customers", href: "/dashboard/customers", icon: UserGroupIcon },
+];
+
+const adminLinks = [
+  ...providerLinks,
+
   {
     name: "Providers",
     href: "/dashboard/providers",
@@ -27,8 +31,9 @@ const links = [
   },
 ];
 
-export default function NavLinks() {
+export default function NavLinks(props: { role?: string }) {
   const pathname = usePathname();
+  const links = props.role === "admin" ? adminLinks : providerLinks;
 
   return (
     <>
